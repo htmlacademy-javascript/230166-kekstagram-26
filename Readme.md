@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Маргарита  Попова](https://up.htmlacademy.ru/javascript/26/user/230166).
-* Наставник: `Неизвестно`.
+* Студент: [Маргарита Попова](https://up.htmlacademy.ru/javascript/26/user/230166).
+* Наставник: [Антон Попов](https://htmlacademy.ru/profile/joker).
 
 ---
 
