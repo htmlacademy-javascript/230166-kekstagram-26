@@ -1,21 +1,11 @@
-// Получение случайного числа от min до max
-const getRandomInterval = (min, max) => {
-  if (min >= 0 && max > min) {
-    return Math.floor(min + Math.random() * (max + 1 - min));
-  }
-
-  return null;
+const getRandomInterval = function (min, max) {
+  return min >= 0 && max > min ? Math.floor(min + Math.random() * (max + 1 - min)) : null;
 };
 
 getRandomInterval(2, 2);
 
-// Функция для проверки максимальной длины строки
-const checkLength = (string, len) => {
-  if (string.length <= len) {
-    return true;
-  }
-
-  return false;
+const checkLength = function (string, len = 10) {
+  return string.length <= len;
 };
 
-checkLength('string', 10);
+checkLength('string');
