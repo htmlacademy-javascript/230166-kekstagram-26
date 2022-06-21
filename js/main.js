@@ -1,2 +1,4 @@
-import {posts} from './data.js';
+
+import './create_users.js';
+
 

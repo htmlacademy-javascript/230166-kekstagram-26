@@ -35,7 +35,7 @@ const NAMES = [
 const users = Array.from({length: USERS_COUNT}, (_, i) => ({
   id: ++i,
   name: getRandomArrayElement(NAMES),
-  avatar: `img/${getRandomPositiveInteger(1, USERS_COUNT)}.svg`,
+  avatar: `img/avatar-${i}.svg`
 }));
 
 const comments = Array.from({length: COMMENTS_COUNT}, (_, i) => ({
@@ -68,4 +68,4 @@ function joinPostsAndComments() {
 joinCommentsAndUsers();
 joinPostsAndComments();
 
-export {posts};
+export {users, posts};
