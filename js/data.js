@@ -1,10 +1,10 @@
-import {getRandomPositiveInteger, getRandomArrayElement} from './utils.js';
+import { getRandomPositiveInteger, getRandomArrayElement } from './utils.js';
 
 const POST_COUNT = 25;
 const COMMENTS_COUNT = 10;
 const USERS_COUNT = 6;
 
-const DESCRIPTIONS = [
+const CAPTIONS = [
   'Тестим новую камеру! =)',
   'Моя лучшая фотка!',
   'Бэтмен становится олицетворением беспощадного возмездия!',
@@ -42,14 +42,15 @@ const comments = Array.from({length: COMMENTS_COUNT}, (_, i) => ({
   id: ++i,
   postId: getRandomPositiveInteger(1, POST_COUNT),
   userId: getRandomPositiveInteger(1, USERS_COUNT),
-  message: getRandomArrayElement(MESSAGES),
+  text: getRandomArrayElement(MESSAGES),
 }));
 
 const posts = Array.from({length: POST_COUNT}, (_, i) => ({
   id: ++i,
-  url: `photos/${i}.jpg`,
-  description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomPositiveInteger(15, 200),
+  src: `photos/${i}.jpg`,
+  alt: '',
+  caption: getRandomArrayElement(CAPTIONS),
+  likesCount: getRandomPositiveInteger(15, 200),
 }));
 
 function joinCommentsAndUsers() {

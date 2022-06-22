@@ -1,4 +1,6 @@
+import { posts } from './data.js';
+import './create-users.js';
+import { createPost } from './create-post.js';
+import './show-modal.js';
 
-import './create_users.js';
-
-
+createPost(posts[1]);

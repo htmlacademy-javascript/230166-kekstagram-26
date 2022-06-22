@@ -1,5 +1,5 @@
-import {users} from './data.js';
-import {getRandomPositiveInteger} from './utils.js';
+import { users } from './data.js';
+import { getRandomPositiveInteger } from './utils.js';
 
 const pictures = document.querySelector('.pictures');
 const templateFragment = document.querySelector('#picture').content;
