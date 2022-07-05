@@ -1,10 +1,10 @@
-import { getPosts } from './data.js';
-import { createPostPreviews } from './post-previews.js';
-import { createPost } from './create-post.js';
-import './create-post.js';
+import { generatePosts } from './generate-posts.js';
+import { createPostPreviews } from './create-post-previews.js';
+import { showPost } from './show-post.js';
 import './form.js';
 
+const posts = generatePosts();
 
-const posts = getPosts();
 createPostPreviews(posts);
-createPost(posts[0]);
+showPost(posts);
+

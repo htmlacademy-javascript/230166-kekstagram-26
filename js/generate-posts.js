@@ -28,7 +28,7 @@ const NAMES = [
   'Юлия'
 ];
 
-function getPosts () {
+function generatePosts () {
   const users = Array.from({length: USERS_COUNT}, (_, i) => ({
     id: ++i,
     name: getRandomArrayElement(NAMES),
@@ -62,4 +62,4 @@ function getPosts () {
   return posts;
 }
 
-export { getPosts };
+export { generatePosts };

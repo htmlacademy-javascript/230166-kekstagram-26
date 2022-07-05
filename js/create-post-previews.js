@@ -6,7 +6,8 @@ function createPostPreviews(posts) {
 
   for (let i = 0; i < posts.length; i++) {
     const element = template.cloneNode(true);
-    element.querySelector('.picture__img').setAttribute('src', posts[i].src);
+    element.dataset.postId = posts[i].id;
+    element.querySelector('.picture__img').src = posts[i].src;
     element.querySelector('.picture__comments').textContent = posts[i].comments.length;
     element.querySelector('.picture__likes').textContent = posts[i].likesCount;
 
