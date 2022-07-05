@@ -1,6 +1,10 @@
-import { posts } from './data.js';
-import './create-users.js';
+import { getPosts } from './data.js';
+import { createPostPreviews } from './post-previews.js';
 import { createPost } from './create-post.js';
-import './show-modal.js';
+import './create-post.js';
+import './form.js';
 
-createPost(posts[1]);
+
+const posts = getPosts();
+createPostPreviews(posts);
+createPost(posts[0]);

@@ -1,0 +1,6 @@
+function showPost() {
+
+}
+
+export { showPost };
+
