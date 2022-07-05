@@ -9,12 +9,14 @@ const uploadCencel = document.querySelector('#upload-cancel');
 closeModal(modal, uploadCencel);
 
 const onUploadFile = (e) => {
-  // e.preventDefault();
-
   openModal(modal);
 };
 
+function uploadFile() {
+  uploadFileField.addEventListener('change', onUploadFile);
+}
 
+export { uploadFile };
 
 
 

@@ -4,21 +4,23 @@ import { openModal } from './open-modal.js';
 
 function showPost(posts) {
   const pictures = document.querySelector('.pictures');
-  const bigPicture = document.querySelector('.big-picture');
+  const bigPictureElement = document.querySelector('.big-picture');
 
-  pictures.addEventListener('click', (e) => {
-    e.preventDefault();
+  function onClickPictures(e) {
     const element = e.target.closest('.picture');
 
     if (element) {
       const postId = +element.dataset.postId;
       const post = getPost(posts, postId);
-      // console.log(post);
 
       createPost(post);
-      openModal(bigPicture);
+      openModal(bigPictureElement);
     }
-  }, true);
+
+    e.stopImmediatePropagation() ;
+  }
+
+  pictures.addEventListener('click', onClickPictures);
 }
 
 export { showPost };
