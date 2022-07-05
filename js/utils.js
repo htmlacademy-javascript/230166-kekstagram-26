@@ -14,6 +14,15 @@ function getRandomArrayElement(elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
+function chunkArray(array, chunkSize) {
+  const result = [];
+
+  for (let i = 0; i < array.length; i += chunkSize) {
+    result.push(array.slice(i, i + chunkSize));
+  }
+  return result;
+}
+
 const isEscapeKey = (e) => e.key === 'Escape';
 
-export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey };
+export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray };

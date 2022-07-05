@@ -1,5 +1,6 @@
 import { closeModal } from './close-modal.js';
 import { createComments } from './create-comments.js';
+import { loadMore } from './load-more.js';
 
 function createPost(post) {
   const bigPicture = document.querySelector('.big-picture');
@@ -16,7 +17,8 @@ function createPost(post) {
   commentsCount.textContent = post.comments.length;
   caption.textContent = post.caption;
 
-  createComments(post.comments, commentsList);
+  loadMore(post.comments);
+  // createComments(post.comments, commentsList);
   closeModal(bigPicture, pictureCencel);
 }
 
