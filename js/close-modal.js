@@ -1,12 +1,16 @@
 import { isEscapeKey } from './utils.js';
 
-function closeModal(modal, btn) {
+function closeModal(modal, btn, cb = null) {
   const body = document.querySelector('body');
 
   function close() {
     modal.classList.add('hidden');
     body.classList.remove('modal-open');
     document.removeEventListener('keydown', onEscKeydown);
+
+    if (cb) {
+      cb();
+    }
   }
 
   function onEscKeydown(e) {

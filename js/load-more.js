@@ -1,26 +1,24 @@
-import { chunkArray } from './utils.js';
+function loadMore(length, cb) {
 
-function loadMore(items) {
-  const btn = document.querySelector('.comments-loader');
+  function onLoadMoreClick(e) {
+    const target = e.target;
 
-  if (items.length <= 5) {
-    btn.classList.add('hidden');
+    if (target.classList.contains('j-load-more-btn')) {
+      e.preventDefault();
+      let index = 0;
 
-    return;
+      if (index <= length) {
+        cb();
+        index++;
+      }
+
+      target.classList.add('hidden');
+      index = 0;
+      document.removeEventListener('click', onLoadMoreClick);
+    }
   }
 
-  const chunkItems = chunkArray(items, 5);
-  console.log(chunkItems);
-
-  function onCommentsLoaderClick(e) {
-    e.preventDefault();
-
-
-  }
-
-  btn.addEventListener('click', onCommentsLoaderClick);
-
+  document.addEventListener('click', onLoadMoreClick);
 }
-
 
 export { loadMore };

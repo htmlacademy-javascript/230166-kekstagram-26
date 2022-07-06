@@ -1,10 +1,12 @@
 import { createPost } from './create-post.js';
 import { getPost } from './get-post.js';
 import { openModal } from './open-modal.js';
+import { closeModal } from './close-modal.js';
 
 function showPost(posts) {
   const pictures = document.querySelector('.pictures');
   const bigPictureElement = document.querySelector('.big-picture');
+  const pictureCencelBtn = bigPictureElement.querySelector('#picture-cancel');
 
   function onClickPictures(e) {
     const element = e.target.closest('.picture');
@@ -15,6 +17,7 @@ function showPost(posts) {
 
       createPost(post);
       openModal(bigPictureElement);
+      closeModal(bigPictureElement, pictureCencelBtn);
     }
 
     e.stopImmediatePropagation() ;
