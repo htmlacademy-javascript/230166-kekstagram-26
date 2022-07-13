@@ -1,9 +1,8 @@
 import { createPost } from './create-post.js';
 import { getPost } from './get-post.js';
-import { openModal } from './open-modal.js';
-import { closeModal } from './close-modal.js';
+import { openModal, closeModal } from './show-modal.js';
 
-function showPostModal(posts) {
+function showPost(posts) {
   const pictures = document.querySelector('.pictures');
   const bigPictureElement = document.querySelector('.big-picture');
   const pictureCencelBtn = bigPictureElement.querySelector('#picture-cancel');
@@ -26,5 +25,5 @@ function showPostModal(posts) {
   pictures.addEventListener('click', onClickPictures);
 }
 
-export { showPostModal };
+export { showPost };
 

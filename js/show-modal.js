@@ -1,5 +1,12 @@
 import { isEscapeKey } from './utils.js';
 
+function openModal(modal) {
+  const body = document.querySelector('body');
+
+  modal.classList.remove('hidden');
+  body.classList.add('modal-open');
+}
+
 function closeModal(modal, btn = null) {
   const body = document.querySelector('body');
 
@@ -29,4 +36,4 @@ function closeModal(modal, btn = null) {
   }
 }
 
-export { closeModal };
+export { openModal, closeModal };
