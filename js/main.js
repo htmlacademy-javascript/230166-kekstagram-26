@@ -1,10 +1,9 @@
+import { getData } from './api.js';
 import { createPostPreviews } from './create-post-previews.js';
+import { showPageError } from './utils.js';
 import { showPostModal } from './show-post.js';
 import { showUploadPostModal } from './show-upload-post-modal.js';
 import { setUploadPostForm } from './upload-post-form.js';
-import { getData } from './api.js';
-import { showPageError } from './utils.js';
-
 import './nouislider.js';
 
 getData(

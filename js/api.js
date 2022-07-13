@@ -12,7 +12,7 @@ function getData(url, onSuccess, onError) {
 }
 
 function sendData(url, onSuccess, onError, body) {
-  fetch('https://26.javascript.pages.academy/kekstagram', {
+  fetch(url, {
     method: 'POST',
     body
   })
@@ -20,7 +20,7 @@ function sendData(url, onSuccess, onError, body) {
       if (response.ok) {
         onSuccess();
       } else {
-        throw new Error(`${response.status} ${response.statusText}`);
+        throw new Error(response.status);
       }
     })
     .catch((error) => onError(error));
