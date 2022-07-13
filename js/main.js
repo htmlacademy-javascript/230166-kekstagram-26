@@ -1,12 +1,20 @@
-import { generatePosts } from './generate-posts.js';
 import { createPostPreviews } from './create-post-previews.js';
-import { showPost } from './show-post.js';
-import { uploadFile } from './upload-file.js';
-import './upload-file.js';
+import { showPostModal } from './show-post.js';
+import { showUploadPostModal } from './show-upload-post-modal.js';
+import { setUploadPostForm } from './upload-post-form.js';
+import { getData } from './api.js';
+import { showPageError } from './utils.js';
 
-const posts = generatePosts();
+import './nouislider.js';
 
-createPostPreviews(posts);
-showPost(posts);
-uploadFile();
+getData(
+  'https://26.javascript.pages.academy/kekstagram/data',
+  (data) => {
+    createPostPreviews(data);
+    showPostModal(data);
+  },
+  (error) => showPageError(error)
+);
 
+showUploadPostModal();
+setUploadPostForm();

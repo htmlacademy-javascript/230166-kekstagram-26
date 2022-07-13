@@ -7,7 +7,7 @@ function createPost(post) {
 
   const bigPicture = document.querySelector('.big-picture');
   const image = bigPicture.querySelector('.big-picture__img img');
-  const caption = bigPicture.querySelector('.social__caption');
+  const description = bigPicture.querySelector('.social__caption');
   const likes = bigPicture.querySelector('.likes-count');
   const commentsCount = bigPicture.querySelector('.comments-count');
   const commentsList = bigPicture.querySelector('.social__comments');
@@ -18,11 +18,10 @@ function createPost(post) {
     textClass: 'social__text'
   };
 
-  image.src = post.src;
-  image.alt = post.alt;
-  likes.textContent = post.likesCount;
+  image.src = post.url;
+  likes.textContent = post.likes;
   commentsCount.textContent = post.comments.length;
-  caption.textContent = post.caption;
+  description.textContent = post.description;
   commentsList.innerHTML = '';
 
   function addComments(comments) {

@@ -686,7 +686,6 @@ main {
   width: 450px;
 
   margin: 0 auto;
-  margin-bottom: 20px;
   padding: 5px 10px;
 
   font-family: "Open Sans", "Arial", sans-serif;
@@ -1407,4 +1406,46 @@ main {
 
 .hidden {
   display: none;
+}
+
+/* add */
+.img-upload__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-upload__field-wrapper:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.field-error {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FF4040;
+  text-align: left;
+  text-transform: none;
+}
+
+.effect-level__value {
+  display: block;
+  color: black;
+}
+
+.page-error {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: grid;
+  grid-columns-template: 1fr minmax(580px, 1360px);
+  align-items: center;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  background-color: black;
+  color: white;
 }

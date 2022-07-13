@@ -5,7 +5,7 @@ const COMMENTS_COUNT = 100;
 const USERS_COUNT = 6;
 const MIN_LIKES_COUNT = 15;
 const MAX_LIKES_COUNT = 200;
-const CAPTIONS = [
+const DESCRIPTION = [
   'Тестим новую камеру! =)',
   'Моя лучшая фотка!'
 ];
@@ -39,15 +39,15 @@ function generatePosts () {
     id: ++i,
     postId: getRandomPositiveInteger(1, POST_COUNT),
     userId: getRandomPositiveInteger(1, USERS_COUNT),
-    text: getRandomArrayElement(MESSAGES),
+    message: getRandomArrayElement(MESSAGES),
   }));
 
   const posts = Array.from({length: POST_COUNT}, (_, i) => ({
     id: ++i,
-    src: `photos/${i}.jpg`,
+    url: `photos/${i}.jpg`,
     alt: '',
-    caption: getRandomArrayElement(CAPTIONS),
-    likesCount: getRandomPositiveInteger(MIN_LIKES_COUNT, MAX_LIKES_COUNT),
+    description: getRandomArrayElement(DESCRIPTION),
+    likes: getRandomPositiveInteger(MIN_LIKES_COUNT, MAX_LIKES_COUNT),
   }));
 
   comments.forEach((comment) => {

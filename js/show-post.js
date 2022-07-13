@@ -3,7 +3,7 @@ import { getPost } from './get-post.js';
 import { openModal } from './open-modal.js';
 import { closeModal } from './close-modal.js';
 
-function showPost(posts) {
+function showPostModal(posts) {
   const pictures = document.querySelector('.pictures');
   const bigPictureElement = document.querySelector('.big-picture');
   const pictureCencelBtn = bigPictureElement.querySelector('#picture-cancel');
@@ -26,5 +26,5 @@ function showPost(posts) {
   pictures.addEventListener('click', onClickPictures);
 }
 
-export { showPost };
+export { showPostModal };
 

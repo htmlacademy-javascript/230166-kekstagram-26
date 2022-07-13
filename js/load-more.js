@@ -1,5 +1,4 @@
 function loadMore(length, cb) {
-
   function onLoadMoreClick(e) {
     const target = e.target;
 

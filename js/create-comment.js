@@ -10,7 +10,7 @@ function createComment(comment, {itemClass, imageClass, textClass}) {
   image.width = 35;
   image.height = 35;
   text.classList.add(textClass);
-  text.textContent = comment.text;
+  text.textContent = comment.message;
 
   item.append(image);
   item.append(text);
