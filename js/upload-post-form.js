@@ -4,16 +4,19 @@ import { showErrorAlert } from './show-error-alert.js';
 import { sendData } from './api.js';
 
 function uploadPostForm() {
-  const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'gif'];
+  const FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif'];
 
   const formElement = document.querySelector('#upload-select-image');
   const uploadPostModal = formElement.querySelector('.img-upload__overlay');
   const uploadCencelElement = formElement.querySelector('#upload-cancel');
   const uploadFileElement = formElement.querySelector('#upload-file');
-  const previewElement = formElement.querySelector('.img-upload__preview img');
+  const previewImageElement = formElement.querySelector('.img-upload__preview img');
   const hashtagsElement = formElement.querySelector('[name=hashtags]');
   const descriptionElement = formElement.querySelector('[name=description]');
-  const submitElement = document.querySelector('.j-upload-post-submit');
+  const submitElement = formElement.querySelector('#upload-submit');
+  const scaleFieldElement = formElement.querySelector('.scale__control--value');
+  const scaleSmallerElement = formElement.querySelector('.scale__control--smaller');
+  const scaleBiggerElement = formElement.querySelector('.scale__control--bigger');
 
   const pristine = new Pristine(formElement, {
     classTo: 'img-upload__field-wrapper',
@@ -28,7 +31,7 @@ function uploadPostForm() {
     const matches = FILE_TYPES.some((ext) => fileName.endsWith(ext));
 
     if (matches) {
-      previewElement.src = URL.createObjectURL(file);
+      previewImageElement.src = URL.createObjectURL(file);
       openModal(uploadPostModal);
     }
   };
@@ -36,6 +39,32 @@ function uploadPostForm() {
   uploadFileElement.addEventListener('change', onUploadFileChange);
 
   closeModal(uploadPostModal, uploadCencelElement);
+
+  scaleSmallerElement.addEventListener('click', (e) => {
+    e.preventDefault();
+    const value = parseInt(scaleFieldElement.value, 10);
+    scaleBiggerElement.disabled = false;
+
+    if (value !== 25) {
+      scaleFieldElement.value = `${value - 25}%`;
+      previewImageElement.style.transform = `scale(${scaleFieldElement.value})`;
+    } else {
+      e.currentTarget.disabled = true;
+    }
+  });
+
+  scaleBiggerElement.addEventListener('click', (e) => {
+    e.preventDefault();
+    const value = parseInt(scaleFieldElement.value, 10);
+    scaleSmallerElement.disabled = false;
+
+    if (value !== 100) {
+      scaleFieldElement.value = `${value + 25}%`;
+      previewImageElement.style.transform = `scale(${scaleFieldElement.value})`;
+    } else {
+      e.currentTarget.disabled = true;
+    }
+  });
 
   pristine.addValidator(hashtagsElement, (value) => {
     const hashtags = value.trim().split(' ');
@@ -138,7 +167,7 @@ function uploadPostForm() {
   descriptionElement.addEventListener('input', onFieldInput);
 
   formElement.addEventListener('submit', (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     const formData = new FormData(e.target);
 
