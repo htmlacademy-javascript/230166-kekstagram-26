@@ -1,5 +1,4 @@
 import { createPost } from './create-post.js';
-import { getPost } from './get-post.js';
 import { openModal, closeModal } from './show-modal.js';
 
 function showPost(posts) {
@@ -12,7 +11,7 @@ function showPost(posts) {
 
     if (element) {
       const postId = +element.dataset.postId;
-      const post = getPost(posts, postId);
+      const post = posts.filter((el) => el.id === postId)[0];
 
       createPost(post);
       openModal(bigPictureElement);

@@ -25,13 +25,4 @@ function chunkArray(array, chunkSize) {
 
 const isEscapeKey = (e) => e.key === 'Escape';
 
-function showPageError(status) {
-  const bodyElement = document.querySelector('body');
-  const note = document.createElement('div');
-  note.classList.add('page-error');
-  note.textContent = `${status}. Всё пропало (`;
-  bodyElement.innerHTML = '';
-  bodyElement.append(note);
-}
-
-export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray, showPageError };
+export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray };

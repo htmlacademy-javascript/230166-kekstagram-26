@@ -8,7 +8,6 @@ function showSuccessAlert() {
   bodyElement.append(element);
 
   function onCencelBtnClick() {
-    // console.log(cencelBtnElement);
     element.remove();
   }
 

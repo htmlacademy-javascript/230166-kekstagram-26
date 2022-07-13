@@ -1,7 +1,7 @@
 import { getData } from './api.js';
 import { createPostPreviews } from './create-post-previews.js';
 import { showPost } from './show-post.js';
-import { showPageError } from './utils.js';
+import { showErrorPage } from './show-error-page.js';
 import { uploadPostForm } from './upload-post-form.js';
 // import './nouislider.js';
 
@@ -11,7 +11,7 @@ getData(
     createPostPreviews(data);
     showPost(data);
   },
-  (error) => showPageError(error)
+  (error) => showErrorPage(error)
 );
 
 uploadPostForm();

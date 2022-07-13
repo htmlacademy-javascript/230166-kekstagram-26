@@ -31,7 +31,6 @@ function uploadPostForm() {
       previewElement.src = URL.createObjectURL(file);
       openModal(uploadPostModal);
     }
-
   };
 
   uploadFileElement.addEventListener('change', onUploadFileChange);
