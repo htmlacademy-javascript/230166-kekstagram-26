@@ -1,9 +1,11 @@
 import { createPostPreviews } from './create-post-previews.js';
 import { getRandomPosts } from './get-random-posts.js';
 import { getPopularPosts } from './get-popular-posts.js';
+import { debounce } from './utils.js';
 
 function filterPosts(posts) {
   const COUNT_RANDOM_POSTS = 10;
+  const RERENDER_DELAY = 500;
   const filterElement = document.querySelector('.img-filters');
   const filterBtnElements = filterElement.querySelectorAll('.img-filters__button');
 
@@ -29,13 +31,23 @@ function filterPosts(posts) {
           e.target.classList.add('img-filters__button--active');
           break;
         case 'filter-random':
-          filtredPosts = getRandomPosts(posts, COUNT_RANDOM_POSTS);
-          createPostPreviews(filtredPosts);
+          debounce(
+            () => {
+              filtredPosts = getRandomPosts(posts, COUNT_RANDOM_POSTS);
+              createPostPreviews(filtredPosts);
+            },
+            RERENDER_DELAY
+          )();
           e.target.classList.add('img-filters__button--active');
           break;
         case 'filter-discussed':
-          filtredPosts = getPopularPosts(posts);
-          createPostPreviews(filtredPosts);
+          debounce(
+            () => {
+              filtredPosts = getPopularPosts(posts);
+              createPostPreviews(filtredPosts);
+            },
+            RERENDER_DELAY
+          )();
           e.target.classList.add('img-filters__button--active');
           break;
       }

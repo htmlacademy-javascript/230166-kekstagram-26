@@ -1,3 +1,5 @@
+const isEscapeKey = (e) => e.key === 'Escape';
+
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -33,6 +35,19 @@ function getRandomSet(min, max, size) {
   return res;
 }
 
-const isEscapeKey = (e) => e.key === 'Escape';
+function debounce(callback, timeoutDelay) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
 
-export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray, getRandomSet };
+export {
+  getRandomPositiveInteger,
+  checkLength,
+  getRandomArrayElement,
+  isEscapeKey, chunkArray,
+  getRandomSet,
+  debounce,
+};
