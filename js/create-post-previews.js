@@ -4,15 +4,15 @@ function createPostPreviews(posts) {
   const template = templateFragment.querySelector('.picture');
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < posts.length; i++) {
+  posts.forEach((post) => {
     const element = template.cloneNode(true);
-    element.dataset.postId = posts[i].id;
-    element.querySelector('.picture__img').src = posts[i].url;
-    element.querySelector('.picture__comments').textContent = posts[i].comments.length;
-    element.querySelector('.picture__likes').textContent = posts[i].likes;
+    element.dataset.postId = post.id;
+    element.querySelector('.picture__img').src = post.url;
+    element.querySelector('.picture__comments').textContent = post.comments.length;
+    element.querySelector('.picture__likes').textContent = post.likes;
 
     fragment.appendChild(element);
-  }
+  });
 
   pictures.appendChild(fragment);
 }

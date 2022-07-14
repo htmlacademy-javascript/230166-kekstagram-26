@@ -1,0 +1,46 @@
+import { createPostPreviews } from './create-post-previews.js';
+import { getRandomPosts } from './get-random-posts.js';
+import { getPopularPosts } from './get-popular-posts.js';
+
+function filterPosts(posts) {
+  const COUNT_RANDOM_POSTS = 10;
+  const filterElement = document.querySelector('.img-filters');
+  const filterBtnElements = filterElement.querySelectorAll('.img-filters__button');
+
+  filterElement.classList.remove('img-filters--inactive');
+  createPostPreviews(posts);
+
+  filterElement.addEventListener('click', (e) => {
+    if (e.target.classList.contains('img-filters__button')) {
+      const pictureElements = document.querySelectorAll('.pictures .picture');
+      let filtredPosts = [];
+
+      filterBtnElements.forEach((btn) => {
+        btn.classList.remove('img-filters__button--active');
+      });
+
+      pictureElements.forEach((picture) => {
+        picture.remove();
+      });
+
+      switch(e.target.id) {
+        case 'filter-default':
+          createPostPreviews(posts);
+          e.target.classList.add('img-filters__button--active');
+          break;
+        case 'filter-random':
+          filtredPosts = getRandomPosts(posts, COUNT_RANDOM_POSTS);
+          createPostPreviews(filtredPosts);
+          e.target.classList.add('img-filters__button--active');
+          break;
+        case 'filter-discussed':
+          filtredPosts = getPopularPosts(posts);
+          createPostPreviews(filtredPosts);
+          e.target.classList.add('img-filters__button--active');
+          break;
+      }
+    }
+  });
+}
+
+export { filterPosts };

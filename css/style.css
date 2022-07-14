@@ -1428,10 +1428,10 @@ main {
   text-transform: none;
 }
 
-.effect-level__value {
+/* .effect-level__value {
   display: block;
   color: black;
-}
+} */
 
 .page-error {
   position: fixed;

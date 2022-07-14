@@ -23,6 +23,16 @@ function chunkArray(array, chunkSize) {
   return result;
 }
 
+function getRandomSet(min, max, size) {
+  const res = new Set();
+
+  while (res.size < size) {
+    res.add(getRandomPositiveInteger(min, max));
+  }
+
+  return res;
+}
+
 const isEscapeKey = (e) => e.key === 'Escape';
 
-export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray };
+export { getRandomPositiveInteger, checkLength, getRandomArrayElement, isEscapeKey, chunkArray, getRandomSet };
