@@ -1449,3 +1449,12 @@ main {
   background-color: black;
   color: white;
 }
+
+.effect-level__slider .noUi-connect {
+	background: black;
+}
+
+.effect-level__slider {
+	background: white;
+  box-shadow: none;
+}

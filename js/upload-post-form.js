@@ -1,6 +1,7 @@
 import { openModal, closeModal } from './show-modal.js';
 import { showSuccessAlert } from './show-success-alert.js';
 import { showErrorAlert } from './show-error-alert.js';
+import { changeScale } from './change-scale.js';
 import { addEffects } from './add-effects.js';
 import { sendData } from './api.js';
 
@@ -15,9 +16,6 @@ function uploadPostForm() {
   const hashtagsElement = formElement.querySelector('[name=hashtags]');
   const descriptionElement = formElement.querySelector('[name=description]');
   const submitElement = formElement.querySelector('#upload-submit');
-  const scaleFieldElement = formElement.querySelector('.scale__control--value');
-  const scaleSmallerElement = formElement.querySelector('.scale__control--smaller');
-  const scaleBiggerElement = formElement.querySelector('.scale__control--bigger');
 
   const pristine = new Pristine(formElement, {
     classTo: 'img-upload__field-wrapper',
@@ -39,34 +37,8 @@ function uploadPostForm() {
 
   uploadFileElement.addEventListener('change', onUploadFileChange);
   closeModal(uploadPostModal, uploadCencelElement);
-
+  changeScale();
   addEffects();
-
-  scaleSmallerElement.addEventListener('click', (e) => {
-    e.preventDefault();
-    const value = parseInt(scaleFieldElement.value, 10);
-    scaleBiggerElement.disabled = false;
-
-    if (value !== 25) {
-      scaleFieldElement.value = `${value - 25}%`;
-      previewImageElement.style.transform = `scale(${scaleFieldElement.value})`;
-    } else {
-      e.currentTarget.disabled = true;
-    }
-  });
-
-  scaleBiggerElement.addEventListener('click', (e) => {
-    e.preventDefault();
-    const value = parseInt(scaleFieldElement.value, 10);
-    scaleSmallerElement.disabled = false;
-
-    if (value !== 100) {
-      scaleFieldElement.value = `${value + 25}%`;
-      previewImageElement.style.transform = `scale(${scaleFieldElement.value})`;
-    } else {
-      e.currentTarget.disabled = true;
-    }
-  });
 
   pristine.addValidator(hashtagsElement, (value) => {
     const hashtags = value.trim().split(' ');
@@ -169,7 +141,7 @@ function uploadPostForm() {
   descriptionElement.addEventListener('input', onFieldInput);
 
   formElement.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const formData = new FormData(e.target);
 
