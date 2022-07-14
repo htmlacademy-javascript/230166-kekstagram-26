@@ -1,6 +1,7 @@
 import { openModal, closeModal } from './show-modal.js';
 import { showSuccessAlert } from './show-success-alert.js';
 import { showErrorAlert } from './show-error-alert.js';
+import { addEffects } from './add-effects.js';
 import { sendData } from './api.js';
 
 function uploadPostForm() {
@@ -37,8 +38,9 @@ function uploadPostForm() {
   };
 
   uploadFileElement.addEventListener('change', onUploadFileChange);
-
   closeModal(uploadPostModal, uploadCencelElement);
+
+  addEffects();
 
   scaleSmallerElement.addEventListener('click', (e) => {
     e.preventDefault();
