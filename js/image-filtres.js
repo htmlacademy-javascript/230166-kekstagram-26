@@ -121,7 +121,7 @@ function addImageFiltres() {
 }
 
 function removeImageFiltres() {
-  if( sliderElement.noUiSlider) {
+  if(sliderElement.noUiSlider) {
     sliderElement.noUiSlider.destroy();
     previewImageElement.style.filter = 'none';
   }

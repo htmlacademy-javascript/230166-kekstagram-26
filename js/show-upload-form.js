@@ -1,5 +1,5 @@
 import { openModal, closeModal } from './show-modal.js';
-import { uploadForm } from './upload-form.js';
+import { uploadForm, resetUploadForm } from './upload-form.js';
 
 function showUploadForm() {
   const FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif'];
@@ -17,6 +17,7 @@ function showUploadForm() {
 
     if (matches) {
       previewImageElement.src = URL.createObjectURL(file);
+      resetUploadForm();
       uploadForm();
       openModal(modalElement);
       closeModal(modalElement, cencelElement);
