@@ -1,5 +1,0 @@
-function resetUploadForm() {
-
-}
-
-export { resetUploadForm };

@@ -1,19 +1,19 @@
 import { showSuccessAlert } from './show-success-alert.js';
 import { showErrorAlert } from './show-error-alert.js';
-import { changeScale } from './change-scale.js';
-import { addEffects } from './add-effects.js';
+import { addImageScaling, removeImageScaling } from './image-scaling.js';
+import { addImageFiltres, removeImageFiltres } from './image-filtres.js';
 import { sendData } from './api.js';
 import { closeModal } from './show-modal.js';
 import { validateUploadForm } from './validate-upload-form.js';
 
-function uploadForm() {
-  const formElement = document.querySelector('#upload-select-image');
-  const uploadPostModal = formElement.querySelector('.img-upload__overlay');
-  const uploadCencelElement = formElement.querySelector('#upload-cancel');
-  const hashtagsElement = formElement.querySelector('[name=hashtags]');
-  const descriptionElement = formElement.querySelector('[name=description]');
-  const submitElement = formElement.querySelector('#upload-submit');
+const formElement = document.querySelector('#upload-select-image');
+const uploadPostModal = formElement.querySelector('.img-upload__overlay');
+const uploadCencelElement = formElement.querySelector('#upload-cancel');
+const hashtagsElement = formElement.querySelector('[name=hashtags]');
+const descriptionElement = formElement.querySelector('[name=description]');
+const submitElement = formElement.querySelector('#upload-submit');
 
+function uploadForm() {
   function onFieldFocus() {
     uploadCencelElement.disabled = true;
   }
@@ -35,7 +35,7 @@ function uploadForm() {
         closeModal(uploadPostModal);
         showSuccessAlert();
         submitElement.disabled = false;
-        // resetForm();
+        resetUploadForm();
       },
       () => {
         closeModal(uploadPostModal);
@@ -52,9 +52,15 @@ function uploadForm() {
   descriptionElement.addEventListener('blur', onFieldBlur);
   formElement.addEventListener('submit', onSubmitUploadPostForm);
 
+  addImageScaling();
+  addImageFiltres();
   validateUploadForm();
-  changeScale();
-  addEffects();
+}
+
+function resetUploadForm() {
+  removeImageFiltres();
+  removeImageScaling();
+  formElement.reset();
 }
 
 export { uploadForm };

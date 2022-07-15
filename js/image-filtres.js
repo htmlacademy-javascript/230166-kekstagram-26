@@ -1,14 +1,9 @@
-function addEffects() {
-  const sliderElement = document.querySelector('.effect-level__slider');
-  const valueElement = document.querySelector('.effect-level__value');
-  const effectsElement = document.querySelector('.effects');
-  const previewImageElement = document.querySelector('.img-upload__preview img');
+const sliderElement = document.querySelector('.effect-level__slider');
+const valueElement = document.querySelector('.effect-level__value');
+const effectsElement = document.querySelector('.effects');
+const previewImageElement = document.querySelector('.img-upload__preview img');
 
-  if( sliderElement.noUiSlider) {
-    sliderElement.noUiSlider.destroy();
-  }
-
-  previewImageElement.style.filter = 'none';
+function addImageFiltres() {
   sliderElement.setAttribute('disabled', true);
 
   noUiSlider.create(sliderElement, {
@@ -125,4 +120,11 @@ function addEffects() {
   });
 }
 
-export { addEffects };
+function removeImageFiltres() {
+  if( sliderElement.noUiSlider) {
+    sliderElement.noUiSlider.destroy();
+    previewImageElement.style.filter = 'none';
+  }
+}
+
+export { addImageFiltres, removeImageFiltres };
