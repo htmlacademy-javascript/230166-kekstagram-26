@@ -1,18 +1,5 @@
-import { openModal, closeModal } from './show-modal.js';
-import { showSuccessAlert } from './show-success-alert.js';
-import { showErrorAlert } from './show-error-alert.js';
-import { changeScale } from './change-scale.js';
-import { addEffects } from './add-effects.js';
-import { sendData } from './api.js';
-
-function uploadPostForm() {
-  const FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif'];
-
+function validateUploadForm() {
   const formElement = document.querySelector('#upload-select-image');
-  const uploadPostModal = formElement.querySelector('.img-upload__overlay');
-  const uploadCencelElement = formElement.querySelector('#upload-cancel');
-  const uploadFileElement = formElement.querySelector('#upload-file');
-  const previewImageElement = formElement.querySelector('.img-upload__preview img');
   const hashtagsElement = formElement.querySelector('[name=hashtags]');
   const descriptionElement = formElement.querySelector('[name=description]');
   const submitElement = formElement.querySelector('#upload-submit');
@@ -22,23 +9,6 @@ function uploadPostForm() {
     errorTextParent: 'img-upload__field-wrapper',
     errorTextClass: 'field-error'
   });
-
-  const onUploadFileChange = () => {
-    const file = uploadFileElement.files[0];
-    const fileName = file.name.toLowerCase();
-
-    const matches = FILE_TYPES.some((ext) => fileName.endsWith(ext));
-
-    if (matches) {
-      previewImageElement.src = URL.createObjectURL(file);
-      openModal(uploadPostModal);
-    }
-  };
-
-  uploadFileElement.addEventListener('change', onUploadFileChange);
-  closeModal(uploadPostModal, uploadCencelElement);
-  changeScale();
-  addEffects();
 
   pristine.addValidator(hashtagsElement, (value) => {
     const hashtags = value.trim().split(' ');
@@ -139,25 +109,6 @@ function uploadPostForm() {
 
   hashtagsElement.addEventListener('input', onFieldInput);
   descriptionElement.addEventListener('input', onFieldInput);
-
-  formElement.addEventListener('submit', (e) => {
-    // e.preventDefault();
-
-    const formData = new FormData(e.target);
-
-    sendData(
-      'https://26.javascript.pages.academy/kekstagram',
-      () => {
-        closeModal(uploadPostModal);
-        showSuccessAlert();
-      },
-      () => {
-        closeModal(uploadPostModal);
-        showErrorAlert();
-      },
-      formData
-    );
-  });
 }
 
-export { uploadPostForm };
+export { validateUploadForm };

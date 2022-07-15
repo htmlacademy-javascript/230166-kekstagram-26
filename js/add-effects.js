@@ -4,13 +4,19 @@ function addEffects() {
   const effectsElement = document.querySelector('.effects');
   const previewImageElement = document.querySelector('.img-upload__preview img');
 
+  if( sliderElement.noUiSlider) {
+    sliderElement.noUiSlider.destroy();
+  }
+
+  previewImageElement.style.filter = 'none';
+  sliderElement.setAttribute('disabled', true);
+
   noUiSlider.create(sliderElement, {
     range: {
       min: 0,
       max: 1
     },
     start: 0,
-    step: 0.1,
     connect: 'lower',
     format: {
       to: function (value) {
@@ -25,8 +31,6 @@ function addEffects() {
     },
   });
 
-  sliderElement.setAttribute('disabled', true);
-
   effectsElement.addEventListener('change', (e) => {
     const target = e.target;
     let value = 0;
@@ -38,7 +42,14 @@ function addEffects() {
         sliderElement.setAttribute('disabled', true);
         break;
       case 'effect-chrome':
-        sliderElement.noUiSlider.set(1);
+        sliderElement.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 1
+          },
+          start: 1,
+          step: 0.1
+        });
         sliderElement.noUiSlider.on('update', () => {
           value = sliderElement.noUiSlider.get();
           valueElement.value = value;
@@ -47,7 +58,14 @@ function addEffects() {
         sliderElement.removeAttribute('disabled');
         break;
       case 'effect-sepia':
-        sliderElement.noUiSlider.set(1);
+        sliderElement.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 1
+          },
+          start: 1,
+          step: 0.1
+        });
         sliderElement.noUiSlider.on('update', () => {
           value = sliderElement.noUiSlider.get();
           valueElement.value = value;

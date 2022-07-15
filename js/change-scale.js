@@ -4,6 +4,8 @@ function changeScale() {
   const scaleBiggerElement = document.querySelector('.scale__control--bigger');
   const previewImageElement = document.querySelector('.img-upload__preview img');
 
+  previewImageElement.style.transform = 'none';
+
   scaleSmallerElement.addEventListener('click', (e) => {
     e.preventDefault();
     const value = parseInt(scaleFieldElement.value, 10);

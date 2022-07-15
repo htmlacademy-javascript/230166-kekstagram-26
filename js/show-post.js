@@ -2,26 +2,26 @@ import { createPost } from './create-post.js';
 import { openModal, closeModal } from './show-modal.js';
 
 function showPost(posts) {
-  const pictures = document.querySelector('.pictures');
-  const bigPictureElement = document.querySelector('.big-picture');
-  const pictureCencelBtn = bigPictureElement.querySelector('#picture-cancel');
+  const picturesElement = document.querySelector('.pictures');
+  const modalElement = document.querySelector('.big-picture');
+  const cencelElement = modalElement.querySelector('#picture-cancel');
 
   function onClickPictures(e) {
-    const element = e.target.closest('.picture');
+    const target = e.target.closest('.picture');
 
-    if (element) {
-      const postId = +element.dataset.postId;
+    if (target) {
+      const postId = +target.dataset.postId;
       const post = posts.filter((el) => el.id === postId)[0];
 
       createPost(post);
-      openModal(bigPictureElement);
-      closeModal(bigPictureElement, pictureCencelBtn);
+      openModal(modalElement);
+      closeModal(modalElement, cencelElement);
     }
 
     e.stopImmediatePropagation() ;
   }
 
-  pictures.addEventListener('click', onClickPictures);
+  picturesElement.addEventListener('click', onClickPictures);
 }
 
 export { showPost };

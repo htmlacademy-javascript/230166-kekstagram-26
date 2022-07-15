@@ -3,7 +3,7 @@ import { getRandomPosts } from './get-random-posts.js';
 import { getPopularPosts } from './get-popular-posts.js';
 import { debounce } from './utils.js';
 
-function filterPosts(posts) {
+function showPostPreviews(posts) {
   const COUNT_RANDOM_POSTS = 10;
   const RERENDER_DELAY = 500;
   const filterElement = document.querySelector('.img-filters');
@@ -55,4 +55,4 @@ function filterPosts(posts) {
   });
 }
 
-export { filterPosts };
+export { showPostPreviews };

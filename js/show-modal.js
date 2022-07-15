@@ -1,18 +1,18 @@
 import { isEscapeKey } from './utils.js';
 
-function openModal(modal) {
-  const body = document.querySelector('body');
+function openModal(modalElement) {
+  const bodyElement = document.querySelector('body');
 
-  modal.classList.remove('hidden');
-  body.classList.add('modal-open');
+  modalElement.classList.remove('hidden');
+  bodyElement.classList.add('modal-open');
 }
 
-function closeModal(modal, btn = null) {
-  const body = document.querySelector('body');
+function closeModal(modalElement, btnElement = null) {
+  const bodyElement = document.querySelector('body');
 
   function close() {
-    modal.classList.add('hidden');
-    body.classList.remove('modal-open');
+    modalElement.classList.add('hidden');
+    bodyElement.classList.remove('modal-open');
     document.removeEventListener('keydown', onEscKeydown);
   }
 
@@ -28,8 +28,8 @@ function closeModal(modal, btn = null) {
     close();
   }
 
-  if (btn) {
-    btn.addEventListener('click', onCloseModal);
+  if (btnElement) {
+    btnElement.addEventListener('click', onCloseModal);
     document.addEventListener('keydown', onEscKeydown);
   } else {
     close();
