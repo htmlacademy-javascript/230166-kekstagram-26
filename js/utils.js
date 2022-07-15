@@ -22,6 +22,7 @@ function chunkArray(array, chunkSize) {
   for (let i = 0; i < array.length; i += chunkSize) {
     result.push(array.slice(i, i + chunkSize));
   }
+
   return result;
 }
 
@@ -37,6 +38,7 @@ function getRandomSet(min, max, size) {
 
 function debounce(callback, timeoutDelay) {
   let timeoutId;
+
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
