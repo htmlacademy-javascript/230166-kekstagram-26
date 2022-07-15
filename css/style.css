@@ -1450,11 +1450,38 @@ main {
   color: white;
 }
 
-.effect-level__slider .noUi-connect {
-	background: black;
+.effect-level {
+  padding: 13px;
 }
 
-.effect-level__slider {
-	background: white;
+.noUi-connect {
+	background: yellow;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  right: -17px;
+  top: -10px;
+  background-color: yellow;
+  border: none;
   box-shadow: none;
+}
+
+.noUi-horizontal {
+  height: 5px;
+}
+
+.noUi-handle::before, .noUi-handle::after {
+  display: none;
+}
+
+.noUi-target {
+  box-shadow: none;
+  border: none;
+}
+
+[disabled] .noUi-handle {
+  background-color: white;
 }
