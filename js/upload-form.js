@@ -2,14 +2,14 @@ import { sendData } from './api.js';
 import { addImageScaling, removeImageScaling } from './image-scaling.js';
 import { addImageFiltres, removeImageFiltres } from './image-filtres.js';
 import { addUploadFormValidation, resetUploadFormValidation } from './upload-form-validation.js';
-import { showSuccessAlert } from './show-success-alert.js';
-import { showErrorAlert } from './show-error-alert.js';
-import { closeModal } from './show-modal.js';
+import { showSuccessAlert, showErrorAlert } from './alerts.js';
+import { closeModal } from './modal.js';
 
 const formElement = document.querySelector('#upload-select-image');
 const modalElement = formElement.querySelector('.img-upload__overlay');
 const cencelElement = formElement.querySelector('#upload-cancel');
 const hashtagsElement = formElement.querySelector('[name=hashtags]');
+const defaultFilterElement = formElement.querySelector('.effects__radio[value="none"]');
 const descriptionElement = formElement.querySelector('[name=description]');
 const submitElement = formElement.querySelector('#upload-submit');
 
@@ -21,7 +21,7 @@ function onSubmitUploadForm(e) {
   submitElement.disabled = true;
 
   sendData(
-    'https://26.javascript.pages.academy/kekstagram',
+    'https://26.javascript.pages.academy/kekstagra',
     () => {
       closeModal(modalElement);
       showSuccessAlert();
@@ -63,6 +63,7 @@ function resetUploadForm() {
   resetUploadFormValidation();
   hashtagsElement.value = '';
   descriptionElement.value = '';
+  defaultFilterElement.checked = true;
   formElement.removeEventListener('click', onSubmitUploadForm);
 }
 

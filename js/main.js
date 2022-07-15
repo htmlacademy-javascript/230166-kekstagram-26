@@ -1,6 +1,6 @@
 import { getData } from './api.js';
 import { showPost } from './show-post.js';
-import { showErrorPage } from './show-error-page.js';
+import { showErrorPage } from './error-page.js';
 import { showUploadForm } from './show-upload-form.js';
 import { showPostPreviews } from './show-post-previews.js';
 

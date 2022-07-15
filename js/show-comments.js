@@ -2,7 +2,7 @@ import { createComment } from './create-comment.js';
 import { chunkArray } from './utils.js';
 
 const COUNT_COMMENTS = 5;
-const commentsLoaderElement = document.querySelector('.comments-loader');
+const loaderElement = document.querySelector('.comments-loader');
 const commentsElement = document.querySelector('.social__comments');
 const commentClassNames = {
   itemClass: 'social__comment',
@@ -22,7 +22,7 @@ function showComments(comments) {
   commentsElement.innerHTML = '';
 
   if (comments.length <= COUNT_COMMENTS) {
-    commentsLoaderElement.classList.add('hidden');
+    loaderElement.classList.add('hidden');
     addComments(comments);
     return;
   }
@@ -32,7 +32,7 @@ function showComments(comments) {
   const nextComments = chunkComments.slice(1);
 
   addComments(startComments);
-  commentsLoaderElement.classList.remove('hidden');
+  loaderElement.classList.remove('hidden');
 
   function onCommentsLoaderClick(e) {
     e.preventDefault();
@@ -43,12 +43,12 @@ function showComments(comments) {
     }
 
     if (index === nextComments.length) {
-      commentsLoaderElement.classList.add('hidden');
-      commentsLoaderElement.removeEventListener('click', onCommentsLoaderClick);
+      loaderElement.classList.add('hidden');
+      loaderElement.removeEventListener('click', onCommentsLoaderClick);
     }
   }
 
-  commentsLoaderElement.addEventListener('click', onCommentsLoaderClick);
+  loaderElement.addEventListener('click', onCommentsLoaderClick);
 }
 
 export { showComments };

@@ -1,19 +1,20 @@
 import { isEscapeKey } from './utils.js';
 
-function openModal(modalElement) {
-  const bodyElement = document.querySelector('body');
+const bodyElement = document.querySelector('body');
 
+function openModal(modalElement) {
   modalElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
 }
 
-function closeModal(modalElement, btnElement = null) {
-  const bodyElement = document.querySelector('body');
-
+function closeModal(modalElement, btnElement, callback = null) {
   function close() {
     modalElement.classList.add('hidden');
     bodyElement.classList.remove('modal-open');
     document.removeEventListener('keydown', onEscKeydown);
+    if (callback) {
+      callback();
+    }
   }
 
   function onEscKeydown(e) {

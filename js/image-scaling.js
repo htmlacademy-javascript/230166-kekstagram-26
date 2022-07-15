@@ -35,7 +35,7 @@ function addImageScaling() {
 }
 
 function removeImageScaling() {
-  // valueElement.value = '100%';
+  valueElement.value = '100%';
   smallerElement.removeEventListener('click', onSmallerElementClick);
   biggerElement.removeEventListener('click', onBiggerElementClick);
   previewImageElement.style.transform = 'none';

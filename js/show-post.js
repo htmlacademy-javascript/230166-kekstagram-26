@@ -1,11 +1,11 @@
 import { createPost } from './create-post.js';
-import { openModal, closeModal } from './show-modal.js';
+import { openModal, closeModal } from './modal.js';
+
+const picturesElement = document.querySelector('.pictures');
+const modalElement = document.querySelector('.big-picture');
+const cencelElement = modalElement.querySelector('#picture-cancel');
 
 function showPost(posts) {
-  const picturesElement = document.querySelector('.pictures');
-  const modalElement = document.querySelector('.big-picture');
-  const cencelElement = modalElement.querySelector('#picture-cancel');
-
   function onClickPictures(e) {
     const target = e.target.closest('.picture');
 
@@ -18,7 +18,7 @@ function showPost(posts) {
       closeModal(modalElement, cencelElement);
     }
 
-    e.stopImmediatePropagation() ;
+    e.stopImmediatePropagation();
   }
 
   picturesElement.addEventListener('click', onClickPictures);
