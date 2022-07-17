@@ -68,12 +68,7 @@ pristine.addValidator(hashtagsElement, (value) => {
   return Object.values(countItems).find((el) => el === 1);
 }, 'один и тот же хэш-тег не может быть использован дважды');
 
-pristine.addValidator(hashtagsElement, (value) => {
-  const hashtags = value.trim().split(' ');
-
-  return hashtags.length <= 5;
-}, 'Нельзя указать больше пяти хэш-тегов');
-
+pristine.addValidator(hashtagsElement, (value) => value.trim().split(' ').length <= 5, 'Нельзя указать больше пяти хэш-тегов');
 pristine.addValidator(descriptionElement, (value) => value.length < 140, 'Максимальная длина 140 символов');
 
 const onFieldInput = () => {
