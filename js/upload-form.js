@@ -18,7 +18,6 @@ const closeModal = () => {
   modalElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
-  resetUploadForm();
 };
 
 function onEscKeydown(e) {
@@ -31,6 +30,7 @@ function onEscKeydown(e) {
 const onCloseModal = (e) => {
   e.preventDefault();
   closeModal();
+  resetUploadForm();
 };
 
 const onFocusField = () => {
