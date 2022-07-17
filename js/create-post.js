@@ -6,13 +6,13 @@ const captionElement = modalElement.querySelector('.social__caption');
 const likesCountElement = modalElement.querySelector('.likes-count');
 const commentsCountElement = modalElement.querySelector('.comments-count');
 
-function createPost(post) {
+const createPost = (post) => {
   imageElement.src = post.url;
   likesCountElement.textContent = post.likes;
   commentsCountElement.textContent = post.comments.length;
   captionElement.textContent = post.description;
 
   showComments(post.comments);
-}
+};
 
 export { createPost };

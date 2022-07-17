@@ -2,20 +2,17 @@ import { isEscapeKey } from './utils.js';
 
 const bodyElement = document.querySelector('body');
 
-function openModal(modalElement) {
+const openModal = (modalElement) => {
   modalElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
-}
+};
 
-function closeModal(modalElement, btnElement, callback = null) {
-  function close() {
+const closeModal = (modalElement, btnElement) => {
+  const close = () => {
     modalElement.classList.add('hidden');
     bodyElement.classList.remove('modal-open');
     document.removeEventListener('keydown', onEscKeydown);
-    if (callback) {
-      callback();
-    }
-  }
+  };
 
   function onEscKeydown(e) {
     if (isEscapeKey(e)) {
@@ -24,10 +21,10 @@ function closeModal(modalElement, btnElement, callback = null) {
     }
   }
 
-  function onCloseModal(e) {
+  const onCloseModal = (e) => {
     e.preventDefault();
     close();
-  }
+  };
 
   if (btnElement) {
     btnElement.addEventListener('click', onCloseModal);
@@ -35,6 +32,6 @@ function closeModal(modalElement, btnElement, callback = null) {
   } else {
     close();
   }
-}
+};
 
 export { openModal, closeModal };

@@ -1,6 +1,6 @@
 import { getRandomSet } from './utils.js';
 
-function getRandomPosts(posts, size) {
+const getRandomPosts = (posts, size) => {
   const arr = getRandomSet(0, posts.length - 1, size);
   const randomPosts = [];
 
@@ -9,6 +9,6 @@ function getRandomPosts(posts, size) {
   });
 
   return randomPosts;
-}
+};
 
 export { getRandomPosts };

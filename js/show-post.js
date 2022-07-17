@@ -5,8 +5,8 @@ const picturesElement = document.querySelector('.pictures');
 const modalElement = document.querySelector('.big-picture');
 const cencelElement = modalElement.querySelector('#picture-cancel');
 
-function showPost(posts) {
-  function onClickPictures(e) {
+const showPost = (posts) => {
+  const onClickPictures = (e) => {
     const target = e.target.closest('.picture');
 
     if (target) {
@@ -19,10 +19,10 @@ function showPost(posts) {
     }
 
     e.stopImmediatePropagation();
-  }
+  };
 
   picturesElement.addEventListener('click', onClickPictures);
-}
+};
 
 export { showPost };
 

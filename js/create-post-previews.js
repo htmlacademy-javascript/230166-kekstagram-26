@@ -1,4 +1,4 @@
-function createPostPreviews(posts) {
+const createPostPreviews = (posts) => {
   const picturesElement = document.querySelector('.pictures');
   const templateFragment = document.querySelector('#picture').content;
   const template = templateFragment.querySelector('.picture');
@@ -15,7 +15,7 @@ function createPostPreviews(posts) {
   });
 
   picturesElement.appendChild(fragment);
-}
+};
 
 export { createPostPreviews };
 
