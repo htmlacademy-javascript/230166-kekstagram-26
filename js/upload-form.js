@@ -3,7 +3,7 @@ import { addImageScaling, removeImageScaling } from './image-scaling.js';
 import { addImageFiltres, removeImageFiltres } from './image-filtres.js';
 import { addUploadFormValidation, resetUploadFormValidation } from './upload-form-validation.js';
 import { showSuccessAlert, showErrorAlert } from './alerts.js';
-import { closeModal } from './modal.js';
+import { isEscapeKey } from './utils.js';
 
 const formElement = document.querySelector('#upload-select-image');
 const modalElement = formElement.querySelector('.img-upload__overlay');
@@ -12,8 +12,36 @@ const hashtagsElement = formElement.querySelector('[name=hashtags]');
 const defaultFilterElement = formElement.querySelector('.effects__radio[value="none"]');
 const descriptionElement = formElement.querySelector('[name=description]');
 const submitElement = formElement.querySelector('#upload-submit');
+const bodyElement = document.querySelector('body');
 
-function onSubmitUploadForm(e) {
+const closeModal = () => {
+  modalElement.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscKeydown);
+  resetUploadForm();
+};
+
+function onEscKeydown(e) {
+  if (isEscapeKey(e)) {
+    e.preventDefault();
+    closeModal();
+  }
+}
+
+const onCloseModal = (e) => {
+  e.preventDefault();
+  closeModal();
+};
+
+const onFocusField = () => {
+  document.removeEventListener('keydown', onEscKeydown);
+};
+
+const onBlurField = () => {
+  document.addEventListener('keydown', onEscKeydown);
+};
+
+const onSubmitUploadForm = (e) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
@@ -21,7 +49,7 @@ function onSubmitUploadForm(e) {
   submitElement.disabled = true;
 
   sendData(
-    'https://26.javascript.pages.academy/kekstagra',
+    'https://26.javascript.pages.academy/kekstagram',
     () => {
       closeModal(modalElement);
       showSuccessAlert();
@@ -35,27 +63,21 @@ function onSubmitUploadForm(e) {
     },
     formData
   );
-}
+};
 
-function onFieldFocus() {
-  cencelElement.disabled = true;
-}
-
-function onFieldBlur() {
-  cencelElement.disabled = false;
-}
-
-function uploadForm() {
-  hashtagsElement.addEventListener('focus', onFieldFocus);
-  hashtagsElement.addEventListener('blur', onFieldBlur);
-  descriptionElement.addEventListener('focus', onFieldFocus);
-  descriptionElement.addEventListener('blur', onFieldBlur);
+const uploadForm = () => {
+  hashtagsElement.addEventListener('focus', onFocusField);
+  hashtagsElement.addEventListener('blur', onBlurField);
+  descriptionElement.addEventListener('focus', onFocusField);
+  descriptionElement.addEventListener('blur', onBlurField);
   formElement.addEventListener('submit', onSubmitUploadForm);
+  cencelElement.addEventListener('click', onCloseModal);
+  document.addEventListener('keydown', onEscKeydown);
 
   addImageScaling();
   addImageFiltres();
   addUploadFormValidation();
-}
+};
 
 function resetUploadForm() {
   removeImageFiltres();

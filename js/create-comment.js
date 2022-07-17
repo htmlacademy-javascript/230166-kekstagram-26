@@ -1,4 +1,4 @@
-function createComment(comment, {itemClass, imageClass, textClass}) {
+const createComment = (comment, {itemClass, imageClass, textClass}) => {
   const item = document.createElement('li');
   const image = document.createElement('img');
   const text = document.createElement('p');
@@ -16,6 +16,6 @@ function createComment(comment, {itemClass, imageClass, textClass}) {
   item.append(text);
 
   return item;
-}
+};
 
 export { createComment };

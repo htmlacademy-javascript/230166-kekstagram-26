@@ -1,4 +1,4 @@
-function getData(url, onSuccess, onError) {
+const getData = (url, onSuccess, onError) => {
   fetch(url)
     .then((response) => {
       if (response.ok) {
@@ -9,9 +9,9 @@ function getData(url, onSuccess, onError) {
     })
     .then((data) => onSuccess(data))
     .catch((error) => onError(error));
-}
+};
 
-function sendData(url, onSuccess, onError, body) {
+const sendData = (url, onSuccess, onError, body) => {
   fetch(url, {
     method: 'POST',
     body
@@ -24,6 +24,6 @@ function sendData(url, onSuccess, onError, body) {
       }
     })
     .catch((error) => onError(error));
-}
+};
 
 export { getData, sendData };

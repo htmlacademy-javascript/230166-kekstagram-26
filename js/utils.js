@@ -1,13 +1,20 @@
 const isEscapeKey = (e) => e.key === 'Escape';
 
+<<<<<<< Updated upstream
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+=======
+const getRandomPositiveInteger = (min, max) => {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+>>>>>>> Stashed changes
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-}
+};
 
+<<<<<<< Updated upstream
 function checkLength (string, len = 10) {
   return string.length <= len;
 }
@@ -17,37 +24,45 @@ function getRandomArrayElement(elements) {
 }
 
 function chunkArray(array, chunkSize) {
+=======
+const splitIntoGroups = (items, size) => {
+>>>>>>> Stashed changes
   const result = [];
 
-  for (let i = 0; i < array.length; i += chunkSize) {
-    result.push(array.slice(i, i + chunkSize));
+  for (let i = 0; i < items.length; i += size) {
+    result.push(items.slice(i, i + size));
   }
   return result;
-}
+};
 
-function getRandomSet(min, max, size) {
-  const res = new Set();
+const getRandomSet = (min, max, size) => {
+  const items = new Set();
 
-  while (res.size < size) {
-    res.add(getRandomPositiveInteger(min, max));
+  while (items.size < size) {
+    items.add(getRandomPositiveInteger(min, max));
   }
 
-  return res;
-}
+  return items;
+};
 
-function debounce(callback, timeoutDelay) {
+const debounce = (callback, timeoutDelay) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 export {
+<<<<<<< Updated upstream
   getRandomPositiveInteger,
   checkLength,
   getRandomArrayElement,
   isEscapeKey, chunkArray,
+=======
+  isEscapeKey,
+  splitIntoGroups,
+>>>>>>> Stashed changes
   getRandomSet,
   debounce,
 };

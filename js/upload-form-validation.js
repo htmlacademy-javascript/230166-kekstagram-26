@@ -19,7 +19,7 @@ pristine.addValidator(hashtagsElement, (value) => {
   }
 
   return true;
-}, 'Хэш-тег начинается с символа # (решётка)', 1, false);
+}, 'Хэш-тег начинается с символа # (решётка)');
 
 pristine.addValidator(hashtagsElement, (value) => {
   const hashtags = value.trim().split(' ');
@@ -43,7 +43,7 @@ pristine.addValidator(hashtagsElement, (value) => {
   }
 
   return true;
-}, 'Хеш-тег не может состоять только из одной решётки', 1, false);
+}, 'Хеш-тег не может состоять только из одной решётки');
 
 pristine.addValidator(hashtagsElement, (value) => {
   const hashtags = value.trim().split(' ');
@@ -55,7 +55,7 @@ pristine.addValidator(hashtagsElement, (value) => {
   }
 
   return true;
-}, 'Максимальная длина одного хэш-тега 20 символов, включая решётку', 1, false);
+}, 'Максимальная длина одного хэш-тега 20 символов, включая решётку');
 
 pristine.addValidator(hashtagsElement, (value) => {
   const hashtags = value.toLowerCase().trim().split(' ');
@@ -65,58 +65,34 @@ pristine.addValidator(hashtagsElement, (value) => {
     return acc;
   }, {});
 
-  if (Object.values(countItems).find((el) => el > 1)) {
-    return false;
-  }
-
-  return true;
-}, 'один и тот же хэш-тег не может быть использован дважды', 1, false);
+  return Object.values(countItems).find((el) => el === 1);
+}, 'один и тот же хэш-тег не может быть использован дважды');
 
 pristine.addValidator(hashtagsElement, (value) => {
   const hashtags = value.trim().split(' ');
 
-  if (hashtags.length > 5) {
-    return false;
-  }
+  return hashtags.length <= 5;
+}, 'Нельзя указать больше пяти хэш-тегов');
 
-  return true;
-}, 'Нельзя указать больше пяти хэш-тегов', 1, false);
+pristine.addValidator(descriptionElement, (value) => value.length < 140, 'Максимальная длина 140 символов');
 
-pristine.addValidator(descriptionElement, (value) => {
-  if (value && value.length < 10) {
-    return false;
-  }
+const onFieldInput = () => {
+  // eslint-disable-next-line no-unused-expressions
+  pristine.validate() ? submitElement.disabled = false : submitElement.disabled = true;
+};
 
-  return true;
-}, 'Минимальная длина 10 символов', 1, false);
-
-pristine.addValidator(descriptionElement, (value) => {
-  if (value && value.length > 140) {
-    return false;
-  }
-
-  return true;
-}, 'Максимальная длина 140 символов', 1, false);
-
-function onFieldInput() {
-  if (pristine.validate()) {
-    submitElement.disabled = false;
-  } else {
-    submitElement.disabled = true;
-  }
-}
-
-function addUploadFormValidation() {
+const addUploadFormValidation = () => {
   hashtagsElement.addEventListener('input', onFieldInput);
   descriptionElement.addEventListener('input', onFieldInput);
-}
+};
 
-function resetUploadFormValidation() {
+const resetUploadFormValidation = () => {
   if (pristine) {
     pristine.reset();
     hashtagsElement.removeEventListener('input', onFieldInput);
     descriptionElement.removeEventListener('input', onFieldInput);
+    submitElement.disabled = false;
   }
-}
+};
 
-export { addUploadFormValidation, resetUploadFormValidation};
+export { addUploadFormValidation, resetUploadFormValidation };
