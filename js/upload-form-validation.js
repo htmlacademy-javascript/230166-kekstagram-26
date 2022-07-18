@@ -72,8 +72,7 @@ pristine.addValidator(hashtagsElement, (value) => value.trim().split(' ').length
 pristine.addValidator(descriptionElement, (value) => value.length < 140, 'Максимальная длина 140 символов');
 
 const onFieldInput = () => {
-  // eslint-disable-next-line no-unused-expressions
-  pristine.validate() ? submitElement.disabled = false : submitElement.disabled = true;
+  submitElement.disabled = !pristine.validate();
 };
 
 const addUploadFormValidation = () => {

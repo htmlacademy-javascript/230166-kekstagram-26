@@ -9,12 +9,13 @@ const getRandomPositiveInteger = (min, max) => {
 };
 
 const splitIntoGroups = (items, size) => {
-  const result = [];
+  const results = [];
 
   for (let i = 0; i < items.length; i += size) {
-    result.push(items.slice(i, i + size));
+    results.push(items.slice(i, i + size));
   }
-  return result;
+
+  return results;
 };
 
 const getRandomSet = (min, max, size) => {

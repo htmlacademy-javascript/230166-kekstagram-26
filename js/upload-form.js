@@ -13,6 +13,7 @@ const defaultFilterElement = formElement.querySelector('.effects__radio[value="n
 const descriptionElement = formElement.querySelector('[name=description]');
 const submitElement = formElement.querySelector('#upload-submit');
 const bodyElement = document.querySelector('body');
+const uploadFileElement = formElement.querySelector('#upload-file');
 
 const closeModal = () => {
   modalElement.classList.add('hidden');
@@ -86,6 +87,7 @@ function resetUploadForm() {
   hashtagsElement.value = '';
   descriptionElement.value = '';
   defaultFilterElement.checked = true;
+  uploadFileElement.value = '';
   formElement.removeEventListener('click', onSubmitUploadForm);
 }
 
